@@ -17,6 +17,9 @@ const Navbar = () => {
     <Box
       px="10"
       bg="transparent"
+      position="fixed"
+      width="100vw"
+      zIndex="modal"
       display="flex"
       justifyContent="space-between"
       py="6"

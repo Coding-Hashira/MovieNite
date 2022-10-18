@@ -24,7 +24,7 @@ const Profile = () => {
         <MenuButton>
           <Avatar name="Jashan Mago" />
         </MenuButton>
-        <MenuList bg="blackAlpha.50">
+        <MenuList opacity="1" zIndex="modal">
           <MenuGroup title="Profile">
             <MenuItem
               icon={<AiOutlineUser style={{ height: "20px", width: "20px" }} />}
