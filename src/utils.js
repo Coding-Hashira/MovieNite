@@ -28,3 +28,25 @@ export const numFormat = (num) => {
     si[index].s
   );
 };
+
+export const formatDate = (date) => {
+  let dateObj = new Date(date);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return `${dateObj.getDate()} ${
+    months[dateObj.getMonth()]
+  }, ${dateObj.getFullYear()}`;
+};

@@ -8,21 +8,40 @@ import {
 } from "@chakra-ui/react";
 import { BiNavigation, BiSearch } from "react-icons/bi";
 import { Link as RouterLink } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
 import { AiOutlineFire } from "react-icons/ai";
 
 const Navbar = () => {
+  const [bgColor, setBgColor] = useState("transparent");
+
+  useEffect(() => {
+    const handleBg = () => {
+      if (window.scrollY > 150) {
+        setBgColor("rgb(20,20,20)");
+      } else setBgColor("transparent");
+    };
+
+    window.addEventListener("scroll", handleBg);
+
+    return () => {
+      window.removeEventListener("scroll", handleBg);
+    };
+  }, []);
+
   return (
     <Box
       px="10"
-      bg="transparent"
+      bg={bgColor}
       position="fixed"
       width="100vw"
       zIndex="modal"
       display="flex"
+      transition="all"
+      transitionDuration="0.4s"
       justifyContent="space-between"
-      py="6"
+      pt="6"
+      pb="3"
     >
       <Box>
         <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }}>

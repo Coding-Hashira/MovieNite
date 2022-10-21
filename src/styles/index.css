@@ -1,3 +1,7 @@
 .Link:hover {
   text-decoration: underline;
 }
+
+.scroll-none::-webkit-scrollbar{
+  display: none;
+}

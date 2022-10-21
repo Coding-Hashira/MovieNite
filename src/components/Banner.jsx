@@ -18,6 +18,7 @@ const Banner = ({
   movieDesc,
   movieRating,
   movieRatingCount,
+  movieRelease,
 }) => {
   return (
     <Box
@@ -28,11 +29,16 @@ const Banner = ({
       bgRepeat="no-repeat"
       height="105vh"
       paddingLeft="24"
-      backgroundImage={`linear-gradient(to bottom, rgba(0,0,0,0.6), transparent, black), url("https://image.tmdb.org/t/p/original${movieImg}")`}
+      backgroundImage={`linear-gradient(to bottom, rgba(0,0,0,0.6), transparent, rgba(0,0,0,0.92)), url("https://image.tmdb.org/t/p/original${movieImg}")`}
     >
       <Box position="absolute" top="35%">
         <VStack spacing="5" alignItems="flex-start">
-          <Heading>{movieTitle?.toUpperCase()}</Heading>
+          <HStack display="flex">
+            <Heading>{movieTitle?.toUpperCase()}</Heading>
+            <Text fontSize="xs" alignSelf="flex-end">
+              ({movieRelease?.slice(0, 4)})
+            </Text>
+          </HStack>
           <HStack spacing="2" divider={<StackDivider />}>
             {movieGenres.map((genre, key) => (
               <a
@@ -68,7 +74,9 @@ const Banner = ({
           </Button>
         </Box>
         <Box>
-          <Text width="sm">{movieDesc}</Text>
+          <Text width="sm" noOfLines="5">
+            {movieDesc}
+          </Text>
         </Box>
       </Box>
     </Box>
