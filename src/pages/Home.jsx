@@ -7,6 +7,7 @@ const Home = () => {
   const [genreList, setGenreList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [allGenres, setAllGenres] = useState([]);
+  const [width, setWidth] = useState(window.innerWidth);
 
   // Fetch Banner Movie
   useEffect(() => {
@@ -57,7 +58,11 @@ const Home = () => {
         <Box>
           <Banner
             movieTitle={trendingMovie?.title}
-            movieImg={trendingMovie?.backdrop_path}
+            movieImg={
+              width < 768
+                ? trendingMovie?.poster_path
+                : trendingMovie?.backdrop_path
+            }
             movieDesc={trendingMovie?.overview}
             movieRating={trendingMovie?.vote_average}
             movieRatingCount={trendingMovie?.vote_count}
@@ -73,15 +78,15 @@ const Home = () => {
             overflowX="hidden"
             bgImage="linear-gradient(transparent, rgb(20,20,20))"
           />
-          <Row genreId="28" genre="Action" allGenres={allGenres} />
-          <Row genreId="12" genre="Adventure" allGenres={allGenres} />
-          <Row genreId="35" genre="Comedy" allGenres={allGenres} />
-          <Row genreId="27" genre="Horror" allGenres={allGenres} />
-          <Row genreId="10749" genre="Romance" allGenres={allGenres} />
-          <Row genreId="878" genre="Sci-fi" allGenres={allGenres} />
-          <Row genreId="53" genre="Thriller" allGenres={allGenres} />
-          <Row genreId="10751" genre="Family" allGenres={allGenres} />
-          <Row genreId="16" genre="Animation" allGenres={allGenres} />
+          <Row page="1" genreId="28" genre="Action" allGenres={allGenres} />
+          <Row page="2" genreId="12" genre="Adventure" allGenres={allGenres} />
+          <Row page="3" genreId="35" genre="Comedy" allGenres={allGenres} />
+          <Row page="2" genreId="27" genre="Horror" allGenres={allGenres} />
+          <Row page="3" genreId="10749" genre="Romance" allGenres={allGenres} />
+          <Row page="2" genreId="878" genre="Sci-fi" allGenres={allGenres} />
+          <Row page="3" genreId="53" genre="Thriller" allGenres={allGenres} />
+          <Row page="2" genreId="10751" genre="Family" allGenres={allGenres} />
+          <Row page="3" genreId="16" genre="Animation" allGenres={allGenres} />
         </Box>
       )}
     </Box>

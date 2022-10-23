@@ -1,19 +1,21 @@
 import {
   Box,
-  Heading,
   HStack,
   IconButton,
-  Link,
   Tooltip,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { BiNavigation, BiSearch } from "react-icons/bi";
-import { Link as RouterLink } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { BiMenu, BiNavigation, BiSearch } from "react-icons/bi";
+import React, { useEffect, useRef, useState } from "react";
 import Profile from "./Profile";
 import { AiOutlineFire } from "react-icons/ai";
+import Sidebar from "./Sidebar";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [bgColor, setBgColor] = useState("transparent");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
 
   useEffect(() => {
     const handleBg = () => {
@@ -31,7 +33,7 @@ const Navbar = () => {
 
   return (
     <Box
-      px="10"
+      px={{ base: "1", md: "10" }}
       bg={bgColor}
       position="fixed"
       width="100vw"
@@ -43,15 +45,34 @@ const Navbar = () => {
       pt="6"
       pb="3"
     >
-      <Box>
-        <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }}>
-          <Heading size="2xl" fontFamily="Bebas Neue" textColor="brand.500">
-            MovieNite
-          </Heading>
-        </Link>
+      <Box display={{ base: "inline", md: "none" }}>
+        <IconButton
+          _hover={{ bgColor: "brand.500", textColor: "white" }}
+          _active={{ bgColor: "brand.900" }}
+          variant="ghost"
+          textColor="brand.100"
+          ref={btnRef}
+          borderRadius="full"
+          size="lg"
+          height="40px"
+          minWidth="40px"
+          transitionDuration="0.3s"
+          onClick={onOpen}
+          fontFamily="Poppins"
+          icon={<BiMenu style={{ height: "27px", width: "27px" }} />}
+        />
+      </Box>
+      <Sidebar btnRef={btnRef} isOpen={isOpen} onClose={onClose} />
+      <Box
+        position={{ base: "absolute", md: "static" }}
+        width={{ base: "calc(100vw - 0.5em)", md: "-webkit-max-content" }}
+        display="flex"
+        justifyContent="center"
+      >
+        <Logo display={{ base: "none", md: "inline" }} />
       </Box>
 
-      <HStack display="flex" spacing="4">
+      <HStack display={{ base: "none", md: "flex" }} spacing="4">
         {/* TODO: Add React Router Link */}
         <Tooltip label="Discover" borderRadius="md" placement="auto">
           <IconButton

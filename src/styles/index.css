@@ -2,6 +2,6 @@
   text-decoration: underline;
 }
 
-.scroll-none::-webkit-scrollbar{
+.scroll-none::-webkit-scrollbar {
   display: none;
 }
