@@ -1,6 +1,6 @@
 import { Box, CircularProgress } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import { Banner, Row } from "../components";
+import { Banner, Row } from "../components/Home";
 
 const Home = () => {
   const [trendingMovie, setTrendingMovie] = useState({});
@@ -78,15 +78,76 @@ const Home = () => {
             overflowX="hidden"
             bgImage="linear-gradient(transparent, rgb(20,20,20))"
           />
-          <Row page="1" genreId="28" genre="Action" allGenres={allGenres} />
-          <Row page="2" genreId="12" genre="Adventure" allGenres={allGenres} />
-          <Row page="3" genreId="35" genre="Comedy" allGenres={allGenres} />
-          <Row page="2" genreId="27" genre="Horror" allGenres={allGenres} />
-          <Row page="3" genreId="10749" genre="Romance" allGenres={allGenres} />
-          <Row page="2" genreId="878" genre="Sci-fi" allGenres={allGenres} />
-          <Row page="3" genreId="53" genre="Thriller" allGenres={allGenres} />
-          <Row page="2" genreId="10751" genre="Family" allGenres={allGenres} />
-          <Row page="3" genreId="16" genre="Animation" allGenres={allGenres} />
+          <Row
+            page="1"
+            withGenre={false}
+            heading="Trending Now"
+            allGenres={allGenres}
+            url="https://api.themoviedb.org/3/movie/popular?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&page=1"
+          />
+          <Row
+            page="1"
+            genreId="28"
+            withGenre={true}
+            heading="Top in Action"
+            allGenres={allGenres}
+          />
+          <Row
+            page="2"
+            genreId="12"
+            withGenre={true}
+            heading="Top in Adventure"
+            allGenres={allGenres}
+          />
+          <Row
+            page="3"
+            genreId="35"
+            withGenre={true}
+            heading="Top in Comedy"
+            allGenres={allGenres}
+          />
+          <Row
+            page="2"
+            genreId="27"
+            withGenre={true}
+            heading="Top in Horror"
+            allGenres={allGenres}
+          />
+          <Row
+            page="3"
+            genreId="10749"
+            withGenre={true}
+            heading="Top in Romance"
+            allGenres={allGenres}
+          />
+          <Row
+            page="2"
+            genreId="878"
+            withGenre={true}
+            heading="Top in Sci-fi"
+            allGenres={allGenres}
+          />
+          <Row
+            page="3"
+            genreId="53"
+            withGenre={true}
+            heading="Top in Thriller"
+            allGenres={allGenres}
+          />
+          <Row
+            page="2"
+            genreId="10751"
+            withGenre={true}
+            heading="Top in Family"
+            allGenres={allGenres}
+          />
+          <Row
+            page="3"
+            genreId="16"
+            withGenre={true}
+            heading="Top in Animation"
+            allGenres={allGenres}
+          />
         </Box>
       )}
     </Box>

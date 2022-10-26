@@ -5,3 +5,11 @@
 .scroll-none::-webkit-scrollbar {
   display: none;
 }
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}

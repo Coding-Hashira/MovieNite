@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { formatDate } from "../utils";
+import { formatDate } from "../../utils";
 
 const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
   const [movieGenre, setMovieGenre] = useState([]);
