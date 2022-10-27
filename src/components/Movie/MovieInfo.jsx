@@ -34,15 +34,7 @@ const MovieInfo = ({ movie }) => {
   }, [movie]);
 
   return (
-    <VStack
-      position="relative"
-      bottom="140px"
-      px="100px"
-      spacing="10"
-      pb="100px"
-      w="100%"
-      alignItems="flex-start"
-    >
+    <VStack spacing="10" w="100%" alignItems="flex-start">
       <Box w="167px" h="250px">
         <Img
           src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
