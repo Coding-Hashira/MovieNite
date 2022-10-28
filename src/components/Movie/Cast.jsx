@@ -14,7 +14,6 @@ const Cast = ({ cast }) => {
 
   useEffect(() => {
     setCastLocal(cast ? cast : []);
-    console.log(cast, castLocal);
   }, [cast]);
 
   return (
@@ -48,7 +47,7 @@ const Cast = ({ cast }) => {
                   : ""
               }
             />
-            <Text fontWeight="extrabold" textColor="brand.100" fontSize="sm">
+            <Text fontWeight="extrabold" textColor="brand.100" fontSize="md">
               {person?.name}
             </Text>
             <Text fontWeight="medium" textColor="gray.400" fontSize="xs">

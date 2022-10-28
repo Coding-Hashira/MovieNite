@@ -1,21 +1,8 @@
-import {
-  Box,
-  Heading,
-  Img,
-  VStack,
-  StackDivider,
-  HStack,
-  CircularProgress,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Heading, Img, VStack, HStack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { AiFillStar } from "react-icons/ai";
-import { formatDate, numFormat } from "../../utils";
 
-const MovieInfo = ({ movie }) => {
-  console.log(movie);
+const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
   const [genres, setGenres] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let genreList = [];
@@ -30,7 +17,6 @@ const MovieInfo = ({ movie }) => {
     };
 
     setMovieGenres();
-    console.log(genres);
   }, [movie]);
 
   return (
@@ -47,27 +33,23 @@ const MovieInfo = ({ movie }) => {
           cursor="pointer"
         />
       </Box>
-      {isLoading ? (
-        <CircularProgress isIndeterminate />
-      ) : (
-        <VStack alignItems="flex-start" w="80%" spacing="3">
-          <HStack spacing="8px" alignItems="flex-end">
-            <Heading size="lg" lineHeight="1" fontFamily="body">
-              {movie?.title}
-            </Heading>
-          </HStack>
-          <HStack textColor="gray.400" spacing="2">
-            <Text>{movie?.release_date?.slice(0, 4)}</Text>
-            <Text>•</Text>
-            <Text>{(movie?.runtime / 60).toFixed(1)} Hours</Text>
-            <Text>•</Text>
-            <Text>{genres?.join(", ")}</Text>
-          </HStack>
-          <Box>
-            <Text>{movie?.overview}</Text>
-          </Box>
-        </VStack>
-      )}
+      <VStack alignItems="flex-start" w="80%" spacing="3">
+        <HStack spacing="8px" alignItems="flex-end">
+          <Heading size="lg" lineHeight="1" fontFamily="body">
+            {movie?.title}
+          </Heading>
+        </HStack>
+        <HStack textColor="gray.400" spacing="2">
+          <Text>{movie?.release_date?.slice(0, 4)}</Text>
+          <Text>•</Text>
+          <Text>{(movie?.runtime / 60).toFixed(1)} Hours</Text>
+          <Text>•</Text>
+          <Text>{genres?.join(", ")}</Text>
+        </HStack>
+        <Box>
+          <Text>{movie?.overview}</Text>
+        </Box>
+      </VStack>
     </VStack>
   );
 };
