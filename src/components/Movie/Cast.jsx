@@ -9,16 +9,18 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-const Cast = ({ cast }) => {
+const Cast = ({ cast, isLoading }) => {
   const [castLocal, setCastLocal] = useState([]);
 
+  console.log(isLoading);
+
   useEffect(() => {
-    setCastLocal(cast ? cast : []);
-  }, [cast]);
+    isLoading ? "" : setCastLocal(cast ? cast : []);
+  }, [isLoading]);
 
   return (
     <HStack flexDirection="column" gap="2" alignItems="normal">
-      <Heading>Cast</Heading>
+      <Heading fontFamily="body">Cast</Heading>
       <Divider m="0px !important" />
       <HStack
         spacing="12"
@@ -33,20 +35,23 @@ const Cast = ({ cast }) => {
             alignItems="center"
             justifyContent="space-between"
             textAlign="center"
+            spacing="0.5"
           >
-            <Avatar
-              // size="2xl"
-              h="175px"
-              w="175px"
-              _hover={{ transform: "scale(1.05)" }}
-              transition="all 0.5s"
-              cursor="pointer"
-              src={
-                person?.profile_path
-                  ? `https://image.tmdb.org/t/p/original${person?.profile_path}`
-                  : ""
-              }
-            />
+            <Box h="200px" alignItems="center" display="flex">
+              <Avatar
+                // size="2xl"
+                h="175px"
+                w="175px"
+                _hover={{ transform: "scale(1.05)" }}
+                transition="all 0.5s"
+                cursor="pointer"
+                src={
+                  person?.profile_path
+                    ? `https://image.tmdb.org/t/p/original${person?.profile_path}`
+                    : ""
+                }
+              />
+            </Box>
             <Text fontWeight="extrabold" textColor="brand.100" fontSize="md">
               {person?.name}
             </Text>

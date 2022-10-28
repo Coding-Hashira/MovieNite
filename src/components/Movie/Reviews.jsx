@@ -9,11 +9,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import Rating from "./Rating";
 import Review from "./Review";
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews, rating, ratingCount, isLoading }) => {
   const [reviewList, setReviewList] = useState([]);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     setReviewList(reviews);
@@ -21,16 +21,24 @@ const Reviews = ({ reviews }) => {
 
   return (
     <VStack gap="2" alignItems="normal">
-      <Heading>Ratings & Reviews</Heading>
-      <Divider m="0px !important" />
-      <VStack
-        spacing="5"
-        divider={<StackDivider borderColor="grey" />}
-        alignItems="flex-start"
-      >
-        {reviewList?.map((review, key) => (
-          <Review review={review} key={key} />
-        ))}
+      <VStack spacing="80px">
+        <Rating
+          isLoading={isLoading}
+          rating={rating}
+          ratingCount={ratingCount}
+        />
+        <VStack
+          spacing="5"
+          divider={<StackDivider color="gray.400" />}
+          alignItems="flex-start"
+        >
+          <Heading fontFamily="body">
+            {reviewList.length > 1 ? "Reviews" : "Review"}
+          </Heading>
+          {reviewList?.map((review, key) => (
+            <Review review={review} key={key} />
+          ))}
+        </VStack>
       </VStack>
     </VStack>
   );

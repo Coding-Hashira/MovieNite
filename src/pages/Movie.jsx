@@ -68,8 +68,13 @@ const Movie = () => {
               setIsLoading={setIsLoading}
               movie={movie}
             />
-            <Cast cast={cast} />
-            <Reviews reviews={reviews} />
+            <Cast cast={cast} isLoading={isLoading} />
+            <Reviews
+              reviews={reviews}
+              rating={movie?.vote_average}
+              ratingCount={movie?.vote_count}
+              isLoading={isLoading}
+            />
           </VStack>
         </>
       )}
