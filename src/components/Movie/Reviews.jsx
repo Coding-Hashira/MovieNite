@@ -21,14 +21,14 @@ const Reviews = ({ reviews, rating, ratingCount, isLoading }) => {
 
   return (
     <VStack gap="2" alignItems="normal">
-      <VStack alignItems="flex-start" spacing="80px">
+      <VStack alignItems="flex-start" spacing={{ base: "50px", md: "80px" }}>
         <Rating
           isLoading={isLoading}
           rating={rating}
           ratingCount={ratingCount}
         />
         <VStack
-          spacing="5"
+          spacing={{ base: "3", md: "5" }}
           divider={<StackDivider color="gray.400" />}
           alignItems="flex-start"
           w="100%"

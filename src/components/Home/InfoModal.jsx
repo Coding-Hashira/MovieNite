@@ -12,6 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { formatDate } from "../../utils";
 
 const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
@@ -48,16 +49,18 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
             </VStack>
           </ModalBody>
           <ModalFooter>
-            <Button
-              _hover={{ bgColor: "brand.hover", textColor: "white" }}
-              _active={{ bgColor: "brand.hover" }}
-              bgColor="brand.900"
-              rounded="md"
-              display="flex"
-              alignItems="center"
-            >
-              Know More
-            </Button>
+            <Link to={`/movie/${movie?.id}`}>
+              <Button
+                _hover={{ bgColor: "brand.hover", textColor: "white" }}
+                _active={{ bgColor: "brand.hover" }}
+                bgColor="brand.900"
+                rounded="md"
+                display="flex"
+                alignItems="center"
+              >
+                Know More
+              </Button>
+            </Link>
           </ModalFooter>
         </ModalContent>
       </Modal>

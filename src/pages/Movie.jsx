@@ -57,10 +57,11 @@ const Movie = () => {
         <>
           <MovieBanner movieImg={movie?.backdrop_path} />
           <VStack
-            px="100px"
+            px={{ base: "20px", md: "100px" }}
             alignItems="normal"
-            position="relative"
-            spacing="80px"
+            position={{ base: "static", md: "relative" }}
+            spacing={{ base: "50px", md: "80px" }}
+            pt={{ base: "100px", md: "0px" }}
             bottom="140px"
           >
             <MovieInfo

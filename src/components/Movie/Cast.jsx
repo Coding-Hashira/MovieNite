@@ -23,12 +23,14 @@ const Cast = ({ cast, isLoading }) => {
       <Heading fontFamily="body">Cast</Heading>
       <Divider m="0px !important" />
       <HStack
-        spacing="12"
+        spacing={{ base: "8", md: "12" }}
         maxW="100%"
         overflowX="scroll"
         maxH="300px"
         alignItems="flex-start"
         className="scroll-none"
+        pl="3px"
+        m="0px"
       >
         {castLocal?.map((person) => (
           <VStack
@@ -37,11 +39,15 @@ const Cast = ({ cast, isLoading }) => {
             textAlign="center"
             spacing="0.5"
           >
-            <Box h="200px" alignItems="center" display="flex">
+            <Box
+              h={{ base: "125px", md: "200px" }}
+              alignItems="center"
+              display="flex"
+            >
               <Avatar
                 // size="2xl"
-                h="175px"
-                w="175px"
+                h={{ base: "100px", md: "175px" }}
+                w={{ base: "100px", md: "175px" }}
                 _hover={{ transform: "scale(1.05)" }}
                 transition="all 0.5s"
                 cursor="pointer"

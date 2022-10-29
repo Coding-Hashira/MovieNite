@@ -1,5 +1,6 @@
 import { CircularProgress, Heading, HStack, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Poster from "./Poster";
 
 const Row = ({ heading, genreId, allGenres, page, withGenre, url }) => {
@@ -37,9 +38,25 @@ const Row = ({ heading, genreId, allGenres, page, withGenre, url }) => {
         {isLoading ? (
           <CircularProgress isIndeterminate color="brand.500" />
         ) : (
-          movies.map((movie, index) => (
-            <Poster allGenres={allGenres} movie={movie} key={index} />
-          ))
+          movies.map((movie, index) =>
+            window?.innerWidth > 768 ? (
+              <Poster
+                hasIcon={window?.innerWidth > 768 ? true : false}
+                allGenres={allGenres}
+                movie={movie}
+                key={index}
+              />
+            ) : (
+              <Link to={`/movie/${movie?.id}`}>
+                <Poster
+                  hasIcon={window?.innerWidth > 768 ? true : false}
+                  allGenres={allGenres}
+                  movie={movie}
+                  key={index}
+                />
+              </Link>
+            )
+          )
         )}
       </HStack>
     </VStack>
