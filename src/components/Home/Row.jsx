@@ -29,6 +29,7 @@ const Row = ({ heading, genreId, allGenres, page, withGenre, url }) => {
       </Heading>
       <HStack
         overflowX="scroll"
+        overflowY="hidden"
         w={{ base: "calc(100vw - 2.5rem)", md: "calc(100vw - 5rem)" }}
         className="scroll-none"
         scrollBehavior="smooth"

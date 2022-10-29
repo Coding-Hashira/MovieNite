@@ -15,7 +15,7 @@ const Cast = ({ cast, isLoading }) => {
   console.log(isLoading);
 
   useEffect(() => {
-    isLoading ? "" : setCastLocal(cast ? cast : []);
+    isLoading ? "" : setCastLocal(cast);
   }, [isLoading]);
 
   return (

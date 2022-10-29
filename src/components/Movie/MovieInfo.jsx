@@ -1,4 +1,12 @@
-import { Box, Heading, Img, VStack, HStack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Img,
+  VStack,
+  HStack,
+  Text,
+  Button,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
 const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
@@ -33,11 +41,27 @@ const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
           cursor="pointer"
         />
       </Box>
-      <VStack alignItems="flex-start" w="80%" spacing="3">
-        <HStack spacing="8px" alignItems="flex-end">
+      <VStack alignItems="flex-start" spacing="3">
+        <HStack
+          spacing="8px"
+          alignItems="center"
+          justifyContent="space-between"
+          w="100%"
+        >
           <Heading size="lg" lineHeight="1" fontFamily="body">
             {movie?.title}
           </Heading>
+          <Button
+            _hover={{ bgColor: "brand.500", textColor: "white" }}
+            _active={{ bgColor: "brand.hover" }}
+            bgColor="brand.100"
+            rounded="md"
+            display="flex"
+            size="lg"
+            alignItems="center"
+          >
+            Add To Watchlist
+          </Button>
         </HStack>
         <HStack textColor="gray.400" spacing="2">
           <Text>{movie?.release_date?.slice(0, 4)}</Text>

@@ -38,7 +38,8 @@ const Home = () => {
 
         setGenreList(movieGenres);
         setIsLoading(false);
-      });
+      })
+      .catch((err) => window.location.reload());
   }, [trendingMovie]);
 
   return (

@@ -3,11 +3,26 @@
 }
 
 .scroll-none::-webkit-scrollbar {
-  display: none;
+  color: aqua;
+  height: 5px;
+}
+
+::-webkit-scrollbar {
+  color: aqua;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background-color: rgb(20, 20, 20);
+  width: 8px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(40, 40, 40);
+  /* position: absolute; */
+  /* margin-bottom: 100px; */
+  width: 8px !important;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-button {
