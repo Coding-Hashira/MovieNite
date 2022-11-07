@@ -18,8 +18,10 @@ const Navbar = () => {
   const btnRef = useRef();
 
   useEffect(() => {
+    let changeBg = window.location.pathname === "/" ? 150 : 20;
+
     const handleBg = () => {
-      if (window.scrollY > 150) {
+      if (window.scrollY > changeBg) {
         setBgColor("rgb(20,20,20)");
       } else setBgColor("transparent");
     };

@@ -40,7 +40,6 @@ const Movie = () => {
       });
   }, []);
 
-  console.log(reviews);
   return (
     <Box bgColor="blackAlpha.900" minH="100vh" className="scroll">
       {isLoading ? (

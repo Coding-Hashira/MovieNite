@@ -1,11 +1,4 @@
-import {
-  Box,
-  Heading,
-  HStack,
-  StackDivider,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Heading, StackDivider, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { numFormat } from "../../utils";
 
@@ -18,7 +11,6 @@ const Rating = ({ rating, ratingCount, isLoading }) => {
     } else {
       ("");
     }
-    console.log(score);
   }, [isLoading]);
 
   return (

@@ -12,8 +12,6 @@ import React, { useEffect, useState } from "react";
 const Cast = ({ cast, isLoading }) => {
   const [castLocal, setCastLocal] = useState([]);
 
-  console.log(isLoading);
-
   useEffect(() => {
     isLoading ? "" : setCastLocal(cast);
   }, [isLoading]);
