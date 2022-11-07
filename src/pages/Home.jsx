@@ -34,7 +34,7 @@ const Home = () => {
         let genres = allGenres.filter((genreObj) =>
           genreIds?.includes(genreObj.id)
         );
-        genres.forEach((genre) => movieGenres.push(genre.name));
+        genres.forEach((genre) => movieGenres.push(genre));
 
         setGenreList(movieGenres);
         setIsLoading(false);

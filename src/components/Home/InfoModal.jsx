@@ -24,7 +24,7 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
     let genres = allGenres.filter((genreObj) =>
       genreIds?.includes(genreObj.id)
     );
-    genres.forEach((genre) => movieGenres.push(genre.name));
+    genres.forEach((genre) => movieGenres.push(genre));
 
     setMovieGenre(movieGenres);
   };
@@ -44,7 +44,15 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
             <VStack alignItems="flex-start">
               <Text>Title: {movie.title}</Text>
               <Text>Release Date: {formatDate(movie.release_date)}</Text>
-              <Text>Genres: {movieGenre.join(", ")}</Text>
+              <Text>
+                Genres:{" "}
+                {movieGenre.map((genre) => (
+                  <Link
+                    className="Link"
+                    to={`/genre/${genre.id}`}
+                  >{`${genre.name} `}</Link>
+                ))}
+              </Text>
               <Text>Storyline: {movie.overview}</Text>
             </VStack>
           </ModalBody>

@@ -76,13 +76,19 @@ const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
           </Button>
         </Stack>
         <HStack textColor="gray.400" spacing={{ base: "1", md: "2" }}>
-          <Text fontSize={{ base: "xs", md: "initial" }}>
-            {movie?.release_date?.slice(0, 4)}
-          </Text>
-          <Text fontSize={{ base: "xs", md: "initial" }}>•</Text>
-          <Text fontSize={{ base: "xs", md: "initial" }}>
-            {(movie?.runtime / 60).toFixed(1)} Hours
-          </Text>
+          {movie?.release_date ? (
+            <>
+              <Text fontSize={{ base: "xs", md: "initial" }}>
+                {movie?.release_date?.slice(0, 4)}
+              </Text>
+              <Text fontSize={{ base: "xs", md: "initial" }}>•</Text>
+              <Text fontSize={{ base: "xs", md: "initial" }}>
+                {(movie?.runtime / 60).toFixed(1)} Hours
+              </Text>
+            </>
+          ) : (
+            <Text fontSize={{ base: "xs", md: "initial" }}>Upcoming</Text>
+          )}
           <Text fontSize={{ base: "xs", md: "initial" }}>•</Text>
           <Text fontSize={{ base: "xs", md: "initial" }}>
             {genres?.join(", ")}

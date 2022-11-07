@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Pagination from "../components/Global/Pagination";
 import { Poster } from "../components/Home";
 
@@ -87,14 +87,25 @@ const Genre = () => {
               columnGap="50px"
               justifyContent="center"
             >
-              {data?.results?.map((movie, key) => (
-                <Poster
-                  movie={movie}
-                  hasIcon={window?.innerWidth > 768 ? false : true}
-                  key={key}
-                  allGenres={allGenres}
-                />
-              ))}
+              {data?.results?.map((movie, key) =>
+                window?.innerWidth < 768 ? (
+                  <Poster
+                    movie={movie}
+                    hasIcon={false}
+                    key={key}
+                    allGenres={allGenres}
+                  />
+                ) : (
+                  <Link to={`/movie/${movie?.id}`}>
+                    <Poster
+                      movie={movie}
+                      hasIcon={true}
+                      key={key}
+                      allGenres={allGenres}
+                    />
+                  </Link>
+                )
+              )}
             </Box>
           </>
         )}

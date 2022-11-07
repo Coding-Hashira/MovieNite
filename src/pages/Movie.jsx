@@ -1,11 +1,13 @@
 import { Box, CircularProgress, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { ColorExtractor } from "react-color-extractor";
 import { useParams } from "react-router-dom";
 import { Cast, MovieBanner, MovieInfo, Reviews } from "../components/Movie";
 
 const Movie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
+  const [color, setColor] = useState("");
   const [cast, setCast] = useState({});
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +56,14 @@ const Movie = () => {
         </Box>
       ) : (
         <>
-          <MovieBanner movieImg={movie?.backdrop_path} />
+          <MovieBanner color={color} movieImg={movie?.backdrop_path} />
+          <ColorExtractor
+            src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+            getColors={(colors) => {
+              console.log(colors);
+              setColor(colors[4]);
+            }}
+          />
           <VStack
             px={{ base: "20px", md: "100px" }}
             alignItems="normal"
