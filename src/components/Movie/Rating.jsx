@@ -1,18 +1,8 @@
 import { Box, Heading, StackDivider, Text, VStack } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { numFormat } from "../../utils";
 
-const Rating = ({ rating, ratingCount, isLoading }) => {
-  const [score, setScore] = useState("");
-
-  useEffect(() => {
-    if (isLoading === false) {
-      setScore(`${rating.toFixed(1) * 10}%`);
-    } else {
-      ("");
-    }
-  }, [isLoading]);
-
+const Rating = ({ rating, ratingCount }) => {
   return (
     <VStack
       divider={<StackDivider borderColor="gray.400" />}
@@ -24,7 +14,7 @@ const Rating = ({ rating, ratingCount, isLoading }) => {
         {ratingCount > 0 ? (
           <>
             <Heading textColor="brand.100" size="3xl">
-              {score}
+              {rating}%
             </Heading>
             <Text alignItems="flex-end" fontSize="xs" textColor="gray.400">
               ({numFormat(ratingCount)}+)

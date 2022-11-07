@@ -9,12 +9,24 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-const Cast = ({ cast, isLoading }) => {
-  const [castLocal, setCastLocal] = useState([]);
+const Cast = ({ id, setIsLoading }) => {
+  const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    isLoading ? "" : setCastLocal(cast);
-  }, [isLoading]);
+    setIsLoading(true);
+    const fetchCast = async () => {
+      await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US`
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          setCast(json?.cast);
+        });
+    };
+
+    fetchCast();
+    setIsLoading(false);
+  }, []);
 
   return (
     <HStack flexDirection="column" gap="2" alignItems="normal">
@@ -30,8 +42,9 @@ const Cast = ({ cast, isLoading }) => {
         pl="3px"
         m="0px"
       >
-        {castLocal?.map((person) => (
+        {cast?.map((person, key) => (
           <VStack
+            key={key}
             alignItems="center"
             justifyContent="space-between"
             textAlign="center"
@@ -43,14 +56,13 @@ const Cast = ({ cast, isLoading }) => {
               display="flex"
             >
               <Avatar
-                // size="2xl"
                 h={{ base: "100px", md: "175px" }}
                 w={{ base: "100px", md: "175px" }}
                 _hover={{ transform: "scale(1.05)" }}
                 transition="all 0.5s"
                 cursor="pointer"
                 src={
-                  person?.profile_path
+                  (person?.profile_path != null) | undefined
                     ? `https://image.tmdb.org/t/p/original${person?.profile_path}`
                     : ""
                 }
