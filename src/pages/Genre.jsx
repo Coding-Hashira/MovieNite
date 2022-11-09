@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Heading,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, CircularProgress, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -14,7 +7,7 @@ import { Poster } from "../components/Home";
 
 const Genre = () => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [genre, setGenre] = useState("");
   const [page, setPage] = useState(1);
@@ -39,7 +32,7 @@ const Genre = () => {
       )
         .then((res) => res.json())
         .then((json) => {
-          setData(json);
+          setMovies(json?.results);
           setPage(json?.page);
           setTotalPage(json?.total_pages > 500 ? 500 : json?.total_pages);
         });
@@ -49,18 +42,24 @@ const Genre = () => {
     fetchMovies(page);
   }, [page]);
   useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US"
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        let allGenres = json?.genres;
+    setIsLoading(true);
 
-        let genres = allGenres.filter((genreObj) => id == genreObj?.id);
-        setGenre(genres[0]?.name);
+    const fetchGenres = async () => {
+      await fetch(
+        "https://api.themoviedb.org/3/genre/movie/list?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US"
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          let allGenres = json?.genres;
 
-        setAllGenres(allGenres);
-      });
+          let genres = allGenres?.filter((genreObj) => id == genreObj?.id);
+          setGenre(genres[0]?.name);
+
+          setAllGenres(allGenres);
+        });
+    };
+
+    fetchGenres();
   }, []);
 
   return (
@@ -69,7 +68,7 @@ const Genre = () => {
         {isLoading ? (
           <Box
             w="100%"
-            h="calc(60vh)"
+            h="60vh"
             display="flex"
             justifyContent="center"
             alignItems="center"
@@ -87,7 +86,7 @@ const Genre = () => {
               columnGap="50px"
               justifyContent="center"
             >
-              {data?.results?.map((movie, key) =>
+              {movies?.map((movie, key) =>
                 window?.innerWidth < 768 ? (
                   <Poster
                     movie={movie}
@@ -96,11 +95,10 @@ const Genre = () => {
                     allGenres={allGenres}
                   />
                 ) : (
-                  <Link to={`/movie/${movie?.id}`}>
+                  <Link key={key} to={`/movie/${movie?.id}`}>
                     <Poster
                       movie={movie}
                       hasIcon={true}
-                      key={key}
                       allGenres={allGenres}
                     />
                   </Link>

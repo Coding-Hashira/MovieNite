@@ -18,18 +18,17 @@ import { formatDate } from "../../utils";
 const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
   const [movieGenre, setMovieGenre] = useState([]);
 
-  const getGenres = () => {
-    let genreIds = movie?.genre_ids;
-    let movieGenres = [];
-    let genres = allGenres.filter((genreObj) =>
-      genreIds?.includes(genreObj.id)
-    );
-    genres.forEach((genre) => movieGenres.push(genre));
-
-    setMovieGenre(movieGenres);
-  };
-
   useEffect(() => {
+    const getGenres = () => {
+      let genreIds = movie?.genre_ids;
+      let movieGenres = [];
+      let genres = allGenres?.filter((genreObj) =>
+        genreIds?.includes(genreObj.id)
+      );
+      genres?.forEach((genre) => movieGenres?.push(genre));
+
+      setMovieGenre(movieGenres);
+    };
     getGenres();
   }, []);
 
@@ -42,18 +41,19 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
           <ModalCloseButton />
           <ModalBody>
             <VStack alignItems="flex-start">
-              <Text>Title: {movie.title}</Text>
-              <Text>Release Date: {formatDate(movie.release_date)}</Text>
+              <Text>Title: {movie?.title}</Text>
+              <Text>Release Date: {formatDate(movie?.release_date)}</Text>
               <Text>
                 Genres:{" "}
-                {movieGenre.map((genre) => (
+                {movieGenre?.map((genre, key) => (
                   <Link
                     className="Link"
-                    to={`/genre/${genre.id}`}
-                  >{`${genre.name} `}</Link>
+                    key="key"
+                    to={`/genre/${genre?.id}`}
+                  >{`${genre?.name} `}</Link>
                 ))}
               </Text>
-              <Text>Storyline: {movie.overview}</Text>
+              <Text>Storyline: {movie?.overview}</Text>
             </VStack>
           </ModalBody>
           <ModalFooter>
