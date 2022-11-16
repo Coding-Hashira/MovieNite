@@ -5,7 +5,6 @@ import {
   VStack,
   HStack,
   Text,
-  Button,
   Stack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -63,17 +62,6 @@ const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
           >
             {movie?.title}
           </Heading>
-          <Button
-            _hover={{ bgColor: "brand.500", textColor: "white" }}
-            _active={{ bgColor: "brand.hover" }}
-            bgColor="brand.100"
-            rounded="md"
-            display={{ base: "none", md: "flex" }}
-            size="lg"
-            alignItems="center"
-          >
-            Add To Watchlist
-          </Button>
         </Stack>
         <HStack textColor="gray.400" spacing={{ base: "1", md: "2" }}>
           {movie?.release_date ? (
@@ -97,17 +85,6 @@ const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
         <Box>
           <Text>{movie?.overview}</Text>
         </Box>
-        <Button
-          _hover={{ bgColor: "brand.500", textColor: "white" }}
-          _active={{ bgColor: "brand.hover" }}
-          bgColor="brand.100"
-          rounded={{ base: "base", md: "md" }}
-          display={{ base: "flex", md: "none" }}
-          size={{ base: "md", md: "lg" }}
-          alignItems="center"
-        >
-          Add To Watchlist
-        </Button>
       </VStack>
     </VStack>
   );

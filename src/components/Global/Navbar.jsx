@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import { AiOutlineFire } from "react-icons/ai";
 import Sidebar from "./Sidebar";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [bgColor, setBgColor] = useState("transparent");
@@ -77,16 +78,18 @@ const Navbar = () => {
       <HStack display={{ base: "none", md: "flex" }} spacing="4">
         {/* TODO: Add React Router Link */}
         <Tooltip label="Discover" borderRadius="md" placement="auto">
-          <IconButton
-            _hover={{ bgColor: "brand.500", textColor: "white" }}
-            _active={{ bgColor: "brand.900" }}
-            variant="ghost"
-            textColor="brand.100"
-            borderRadius="full"
-            transitionDuration="0.3s"
-            fontFamily="Poppins"
-            icon={<BiNavigation style={{ height: "20px", width: "20px" }} />}
-          />
+          <Link to="/discover">
+            <IconButton
+              _hover={{ bgColor: "brand.500", textColor: "white" }}
+              _active={{ bgColor: "brand.900" }}
+              variant="ghost"
+              textColor="brand.100"
+              borderRadius="full"
+              transitionDuration="0.3s"
+              fontFamily="Poppins"
+              icon={<BiNavigation style={{ height: "20px", width: "20px" }} />}
+            />
+          </Link>
         </Tooltip>
         <Tooltip label="Trending" borderRadius="md" placement="bottom">
           <IconButton
@@ -112,7 +115,6 @@ const Navbar = () => {
             icon={<BiSearch style={{ height: "20px", width: "20px" }} />}
           />
         </Tooltip>
-        <Profile />
       </HStack>
     </Box>
   );

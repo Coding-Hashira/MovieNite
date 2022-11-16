@@ -45,7 +45,7 @@ const Banner = ({
           <HStack spacing="2" divider={<StackDivider />}>
             {movieGenres.map((genre, key) => (
               <a
-                href={`/genre/${genre?.id}`}
+                href={`/movie?genre=${genre?.id}`}
                 style={{
                   fontFamily: "Poppins",
                   fontSize: "0.9em",

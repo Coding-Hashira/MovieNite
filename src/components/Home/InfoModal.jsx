@@ -48,8 +48,8 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
                 {movieGenre?.map((genre, key) => (
                   <Link
                     className="Link"
-                    key="key"
-                    to={`/genre/${genre?.id}`}
+                    key={key}
+                    to={`/movies?genre=${genre?.id}`}
                   >{`${genre?.name} `}</Link>
                 ))}
               </Text>

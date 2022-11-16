@@ -1,15 +1,14 @@
 import { Box, CircularProgress, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import Pagination from "../components/Global/Pagination";
+import { Link, useSearchParams } from "react-router-dom";
+import { Pagination } from "../components/Global";
 import { Poster } from "../components/Home";
 
-const Genre = () => {
-  const { id } = useParams();
+const Movies = () => {
+  const [searchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [genre, setGenre] = useState("");
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState();
   const [allGenres, setAllGenres] = useState([]);
@@ -26,45 +25,48 @@ const Genre = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchMovies = async (pageNo) => {
+
+    let idParam = searchParams?.get("id");
+    const fetchMovies = async (pageNo, id) => {
       await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNo}&with_genres=${id}&with_watch_monetization_types=flatrate`
+        `https://api.themoviedb.org/3/discover/movie?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNo}&with_genres=${
+          id ? id : ""
+        }&with_watch_monetization_types=flatrate`
       )
         .then((res) => res.json())
         .then((json) => {
           setMovies(json?.results);
           setPage(json?.page);
           setTotalPage(json?.total_pages > 500 ? 500 : json?.total_pages);
-        });
+          console.log(json);
+        })
+        .catch((err) => console.log(err));
       setIsLoading(false);
     };
 
-    fetchMovies(page);
-  }, [page]);
+    fetchMovies(page, idParam);
+  }, [page, searchParams]);
+
   useEffect(() => {
     setIsLoading(true);
 
-    const fetchGenres = async () => {
-      await fetch(
+    const fetchGenres = () => {
+      fetch(
         "https://api.themoviedb.org/3/genre/movie/list?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US"
       )
         .then((res) => res.json())
         .then((json) => {
-          let allGenres = json?.genres;
-
-          let genres = allGenres?.filter((genreObj) => id == genreObj?.id);
-          setGenre(genres[0]?.name);
-
-          setAllGenres(allGenres);
+          setAllGenres(json?.genres);
         });
     };
 
     fetchGenres();
+    setIsLoading(false);
   }, []);
 
   return (
-    <Box paddingTop="" bg="blackAlpha.900" pt="24" px="10" minH="100vh">
-      <VStack spacing="8" alignItems="start">
+    <Box paddingTop="" w="100%" bg="transparent" minH="100vh">
+      <VStack spacing="8" w="100%" alignItems="start">
         {isLoading ? (
           <Box
             w="100%"
@@ -77,7 +79,6 @@ const Genre = () => {
           </Box>
         ) : (
           <>
-            <Heading size="lg">BEST IN {genre?.toUpperCase()}</Heading>
             <Box
               display="flex"
               w="100%"
@@ -119,4 +120,4 @@ const Genre = () => {
   );
 };
 
-export default Genre;
+export default Movies;

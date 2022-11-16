@@ -2,9 +2,10 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Global";
-import Genre from "./pages/Genre";
+import Discover from "./pages/Discover";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
+import Movies from "./pages/Movies";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Movie />} />
-        <Route path="/genre/:id" element={<Genre />} />
+        <Route path="/discover" element={<Discover />}>
+          <Route path="" element={<Movies />} />
+        </Route>
       </Routes>
     </Box>
   );

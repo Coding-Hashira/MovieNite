@@ -1,6 +1,6 @@
 import { HStack, IconButton, useDisclosure } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { AiOutlineInfo, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineInfo } from "react-icons/ai";
 import InfoModal from "./InfoModal";
 
 const Poster = ({ movie, allGenres, hasIcon }) => {
@@ -57,18 +57,6 @@ const Poster = ({ movie, allGenres, hasIcon }) => {
             isOpen={isOpen}
             onClose={onClose}
             movie={movie}
-          />
-          <IconButton
-            icon={<AiOutlinePlus />}
-            _hover={{ bgColor: "brand.hover", textColor: "white" }}
-            _active={{ bgColor: "brand.900" }}
-            bgColor="brand.500"
-            size="lg"
-            minWidth="35px"
-            visibility={iconVisibility}
-            height="35px"
-            padding="0px"
-            rounded="full"
           />
         </>
       ) : (
