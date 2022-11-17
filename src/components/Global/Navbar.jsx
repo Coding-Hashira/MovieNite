@@ -7,7 +7,6 @@ import {
 } from "@chakra-ui/react";
 import { BiMenu, BiNavigation, BiSearch } from "react-icons/bi";
 import React, { useEffect, useRef, useState } from "react";
-import Profile from "./Profile";
 import { AiOutlineFire } from "react-icons/ai";
 import Sidebar from "./Sidebar";
 import Logo from "./Logo";
@@ -92,16 +91,18 @@ const Navbar = () => {
           </Link>
         </Tooltip>
         <Tooltip label="Trending" borderRadius="md" placement="bottom">
-          <IconButton
-            _hover={{ bgColor: "brand.500", textColor: "white" }}
-            _active={{ bgColor: "brand.900" }}
-            variant="ghost"
-            textColor="brand.100"
-            borderRadius="full"
-            transitionDuration="0.3s"
-            fontFamily="Poppins"
-            icon={<AiOutlineFire style={{ height: "20px", width: "20px" }} />}
-          />
+          <Link to="/trending">
+            <IconButton
+              _hover={{ bgColor: "brand.500", textColor: "white" }}
+              _active={{ bgColor: "brand.900" }}
+              variant="ghost"
+              textColor="brand.100"
+              borderRadius="full"
+              transitionDuration="0.3s"
+              fontFamily="Poppins"
+              icon={<AiOutlineFire style={{ height: "20px", width: "20px" }} />}
+            />
+          </Link>
         </Tooltip>
         <Tooltip label="Search" borderRadius="md" placement="bottom">
           <IconButton

@@ -36,11 +36,12 @@ const Sidebar = ({ isOpen, onClose, btnRef }) => {
           </DrawerHeader>
           <DrawerCloseButton />
           <DrawerBody display="flex" flexDirection="column">
-            <Link to="/discover">
+            <Link to="/discover" width="100%">
               <Button
                 borderRadius="none"
                 onClick={() => onClose()}
                 bg="transparent"
+                width="100%"
                 display="flex"
                 textColor="white"
                 justifyContent="flex-start"
@@ -61,29 +62,32 @@ const Sidebar = ({ isOpen, onClose, btnRef }) => {
                 <Text fontWeight="normal">Discover</Text>
               </Button>
             </Link>
-            <Button
-              borderRadius="none"
-              onClick={() => onClose()}
-              bg="transparent"
-              display="flex"
-              textColor="white"
-              justifyContent="flex-start"
-              alignItems="center"
-              gap="10px"
-              px="2px"
-              _focusVisible={{ outline: "none" }}
-              _active={{ bgColor: "rgb(48 205 147 / 40%)" }}
-              _hover={{ bgColor: "rgb(48 205 147 / 35%)" }}
-            >
-              <AiOutlineFire
-                style={{
-                  color: "var(--chakra-colors-brand-100)",
-                  height: "20px",
-                  width: "20px",
-                }}
-              />
-              <Text fontWeight="normal">Trending</Text>
-            </Button>
+            <Link to="/trending" w="100%">
+              <Button
+                borderRadius="none"
+                onClick={() => onClose()}
+                bg="transparent"
+                display="flex"
+                textColor="white"
+                justifyContent="flex-start"
+                alignItems="center"
+                w="100%"
+                gap="10px"
+                px="2px"
+                _focusVisible={{ outline: "none" }}
+                _active={{ bgColor: "rgb(48 205 147 / 40%)" }}
+                _hover={{ bgColor: "rgb(48 205 147 / 35%)" }}
+              >
+                <AiOutlineFire
+                  style={{
+                    color: "var(--chakra-colors-brand-100)",
+                    height: "20px",
+                    width: "20px",
+                  }}
+                />
+                <Text fontWeight="normal">Trending</Text>
+              </Button>
+            </Link>
             <Button
               borderRadius="none"
               onClick={() => onClose()}
