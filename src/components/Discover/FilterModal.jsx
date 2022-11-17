@@ -47,6 +47,7 @@ const FilterModal = ({ isOpen, onClose }) => {
                 onClose();
               }}
               display="flex"
+              _focusVisible={{ boxShadow: "none" }}
               alignItems="center"
             >
               Apply Filters

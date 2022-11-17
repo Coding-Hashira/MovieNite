@@ -26,11 +26,13 @@ const TagButton = ({ text, key, genre, setGenre, genreId }) => {
       key={key}
       fontWeight="medium"
       onClick={() => {
-        if (genre != text) {
+        if (genre != genreId) {
           setGenre(genreId);
-        } else if (genre == text) {
+        } else if (genre === genreId) {
           setGenre("");
         }
+
+        console.log(text);
       }}
       colorScheme="whiteAlpha"
     >

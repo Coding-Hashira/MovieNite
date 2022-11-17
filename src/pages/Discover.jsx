@@ -34,6 +34,7 @@ const Discover = () => {
             rounded="md"
             onClick={onOpen}
             icon={<AiOutlineFilter />}
+            _focusVisible={{ boxShadow: "none" }}
           />
         </Tooltip>
       </HStack>

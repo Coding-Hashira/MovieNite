@@ -32,13 +32,14 @@ const Sidebar = ({ isOpen, onClose, btnRef }) => {
         <DrawerOverlay />
         <DrawerContent textColor="white">
           <DrawerHeader>
-            <Logo display="inline" />
+            <Logo display="inline" onClick={onClose} />
           </DrawerHeader>
           <DrawerCloseButton />
           <DrawerBody display="flex" flexDirection="column">
             <Link to="/discover">
               <Button
                 borderRadius="none"
+                onClick={() => onClose()}
                 bg="transparent"
                 display="flex"
                 textColor="white"
@@ -62,6 +63,7 @@ const Sidebar = ({ isOpen, onClose, btnRef }) => {
             </Link>
             <Button
               borderRadius="none"
+              onClick={() => onClose()}
               bg="transparent"
               display="flex"
               textColor="white"
@@ -84,6 +86,7 @@ const Sidebar = ({ isOpen, onClose, btnRef }) => {
             </Button>
             <Button
               borderRadius="none"
+              onClick={() => onClose()}
               bg="transparent"
               display="flex"
               textColor="white"

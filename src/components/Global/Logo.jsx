@@ -2,10 +2,11 @@ import React from "react";
 import { Heading, Link } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
-const Logo = ({ display }) => {
+const Logo = ({ display, onClick }) => {
   return (
     <Link
       as={RouterLink}
+      onClick={onClick}
       display={display}
       to="/"
       _hover={{ textDecoration: "none" }}

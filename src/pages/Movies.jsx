@@ -88,7 +88,7 @@ const Movies = () => {
               justifyContent="center"
             >
               {movies?.map((movie, key) =>
-                window?.innerWidth < 768 ? (
+                window?.innerWidth > 768 ? (
                   <Poster
                     movie={movie}
                     hasIcon={false}
