@@ -14,6 +14,7 @@ const MovieList = ({
   setIsLoading,
   isLoading,
   hasPagination = true,
+  onPageChange,
 }) => {
   const [allGenres, setAllGenres] = useState([]);
 
@@ -23,9 +24,15 @@ const MovieList = ({
   };
 
   const getPrevPage = (pageParam) => {
-    let page = pageParam > 1 ? pageParam - 1 : totalPage;
+    let page = pageParam > 1 ? pageParam - 1 : totalPages;
     setPage(page);
   };
+
+  useEffect(() => {
+    if (onPageChange) {
+      onPageChange();
+    }
+  }, [page]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -71,7 +78,7 @@ const MovieList = ({
                 window?.innerWidth > 768 ? (
                   <Poster
                     movie={movie}
-                    hasIcon={false}
+                    hasIcon={true}
                     key={key}
                     allGenres={allGenres}
                   />

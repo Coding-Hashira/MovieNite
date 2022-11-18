@@ -13,7 +13,13 @@ const Poster = ({ movie, allGenres, hasIcon }) => {
         hasIcon
           ? {
               transform: "scale(1.05)",
-              bgImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://image.tmdb.org/t/p/original${movie?.poster_path})`,
+              bgImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${
+                movie?.poster_path
+                  ? `https://image.tmdb.org/t/p/original${movie?.poster_path}`
+                  : `https://via.placeholder.com/167x250?text=${movie?.title
+                      ?.split(" ")
+                      ?.join("+")}`
+              })`,
             }
           : {
               transform: "scale(1.05)",
@@ -32,7 +38,13 @@ const Poster = ({ movie, allGenres, hasIcon }) => {
       spacing="5px"
       onMouseLeave={() => (hasIcon ? setIconVisibility("hidden") : "")}
       onMouseEnter={() => (hasIcon ? setIconVisibility("visible") : "")}
-      bgImage={`url(https://image.tmdb.org/t/p/original${movie?.poster_path})`}
+      bgImage={
+        movie?.poster_path
+          ? `url(https://image.tmdb.org/t/p/original${movie?.poster_path})`
+          : `https://via.placeholder.com/167x250?text=${movie?.title
+              ?.split(" ")
+              ?.join("+")}`
+      }
     >
       {hasIcon ? (
         <>

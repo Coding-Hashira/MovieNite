@@ -6,6 +6,7 @@ import Discover from "./pages/Discover";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import Movies from "./pages/Movies";
+import Search from "./pages/Search";
 import Trending from "./pages/Trending";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/trending" element={<Trending />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/movie/:id" element={<Movie />} />
         <Route path="/discover" element={<Discover />}>
           <Route path="" element={<Movies />} />

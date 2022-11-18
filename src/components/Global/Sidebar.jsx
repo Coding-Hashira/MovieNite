@@ -88,29 +88,32 @@ const Sidebar = ({ isOpen, onClose, btnRef }) => {
                 <Text fontWeight="normal">Trending</Text>
               </Button>
             </Link>
-            <Button
-              borderRadius="none"
-              onClick={() => onClose()}
-              bg="transparent"
-              display="flex"
-              textColor="white"
-              justifyContent="flex-start"
-              alignItems="center"
-              gap="10px"
-              px="2px"
-              _focusVisible={{ outline: "none" }}
-              _active={{ bgColor: "rgb(48 205 147 / 40%)" }}
-              _hover={{ bgColor: "rgb(48 205 147 / 35%)" }}
-            >
-              <BiSearch
-                style={{
-                  color: "var(--chakra-colors-brand-100)",
-                  height: "20px",
-                  width: "20px",
-                }}
-              />
-              <Text fontWeight="normal">Search</Text>
-            </Button>
+            <Link w="100%" to="/search">
+              <Button
+                w="100%"
+                borderRadius="none"
+                onClick={() => onClose()}
+                bg="transparent"
+                display="flex"
+                textColor="white"
+                justifyContent="flex-start"
+                alignItems="center"
+                gap="10px"
+                px="2px"
+                _focusVisible={{ outline: "none" }}
+                _active={{ bgColor: "rgb(48 205 147 / 40%)" }}
+                _hover={{ bgColor: "rgb(48 205 147 / 35%)" }}
+              >
+                <BiSearch
+                  style={{
+                    color: "var(--chakra-colors-brand-100)",
+                    height: "20px",
+                    width: "20px",
+                  }}
+                />
+                <Text fontWeight="normal">Search</Text>
+              </Button>
+            </Link>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

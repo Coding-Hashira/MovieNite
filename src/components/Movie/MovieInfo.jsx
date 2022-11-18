@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
+const MovieInfo = ({ movie, setIsLoading }) => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -36,7 +36,13 @@ const MovieInfo = ({ movie, isLoading, setIsLoading }) => {
     >
       <Box w="167px" h="250px">
         <Img
-          src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+          src={
+            movie?.poster_path
+              ? `https://image.tmdb.org/t/p/original${movie?.poster_path}`
+              : `https://via.placeholder.com/167x250?text=${movie?.title
+                  ?.split(" ")
+                  ?.join("+")}`
+          }
           w="100%"
           _hover={{ transform: "scale(1.05)", boxShadow: "2px 2px 8px black" }}
           transitionDuration="0.5s"
