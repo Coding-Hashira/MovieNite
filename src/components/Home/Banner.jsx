@@ -8,6 +8,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = ({
   movieTitle,
@@ -15,6 +16,7 @@ const Banner = ({
   movieGenres,
   movieDesc,
   movieRelease,
+  movieId,
 }) => {
   return (
     <Box
@@ -62,16 +64,18 @@ const Banner = ({
           </Text>
         </VStack>
         <Box paddingY="5">
-          <Button
-            _hover={{ bgColor: "brand.hover", textColor: "white" }}
-            _active={{ bgColor: "brand.hover" }}
-            bgColor="brand.900"
-            rounded={{ base: "sm", md: "md" }}
-            display="flex"
-            alignItems="center"
-          >
-            Add To Watchlist
-          </Button>
+          <Link to={`/movie/${movieId}`}>
+            <Button
+              _hover={{ bgColor: "brand.hover", textColor: "white" }}
+              _active={{ bgColor: "brand.hover" }}
+              bgColor="brand.900"
+              rounded={{ base: "sm", md: "md" }}
+              display="flex"
+              alignItems="center"
+            >
+              Know More
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>

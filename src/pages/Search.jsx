@@ -55,7 +55,7 @@ const Search = () => {
       <VStack w="100%">
         <InputGroup w={{ base: "80%", md: "60%" }} pb="14">
           <InputLeftElement
-            display={{ base: "none", md: "inline" }}
+            display={{ base: "none", md: "flex" }}
             color="gray.600"
             children={<AiOutlineSearch />}
           />

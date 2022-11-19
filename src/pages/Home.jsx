@@ -59,6 +59,7 @@ const Home = () => {
         <Box>
           <Banner
             movieTitle={trendingMovie?.title}
+            movieId={trendingMovie?.id}
             movieImg={
               width < 768
                 ? trendingMovie?.poster_path
