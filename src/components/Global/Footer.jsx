@@ -21,7 +21,8 @@ const Footer = () => {
       borderTopColor="gray.700"
     >
       <Text display="flex" textAlign="center">
-        Made with ♥ By&nbsp;<Text color="brand.100">Jashan Mago</Text>
+        Made with ♥ By&nbsp;
+        <span style={{ color: "brand.100" }}>Jashan Mago</span>
       </Text>
       <HStack pt="3.5">
         <a target="_blank" href="https://github.com/Coding-Hashira/MovieNite">

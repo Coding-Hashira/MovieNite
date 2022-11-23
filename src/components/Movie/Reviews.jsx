@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Rating from "./Rating";
 import Review from "./Review";
 
-const Reviews = ({ id, isLoading, setIsLoading, rating, ratingCount }) => {
+const Reviews = ({ id, setIsLoading, rating, ratingCount }) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Reviews = ({ id, isLoading, setIsLoading, rating, ratingCount }) => {
   }, []);
 
   return (
-    <VStack gap="2" alignItems="normal">
+    <VStack gap="2" pb="20" alignItems="normal">
       <VStack alignItems="flex-start" spacing={{ base: "50px", md: "80px" }}>
         <Rating rating={rating?.toFixed(1) * 10} ratingCount={ratingCount} />
         <VStack

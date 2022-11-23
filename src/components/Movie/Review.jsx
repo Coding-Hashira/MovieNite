@@ -9,17 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { formatDate } from "../../utils";
 
-const Review = ({ review, key }) => {
+const Review = ({ review }) => {
   const [show, setShow] = useState(false);
 
   return (
-    <HStack
-      fontFamily="body"
-      w="100%"
-      alignItems="flex-start"
-      key={key}
-      spacing="2"
-    >
+    <HStack fontFamily="body" w="100%" alignItems="flex-start" spacing="2">
       <Avatar
         src={
           review?.author_details?.avatar_path
