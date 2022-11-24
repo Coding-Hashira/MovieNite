@@ -42,7 +42,7 @@ const Trailer = ({ title }) => {
       alignItems="flex-start"
       w="100%"
     >
-      <Heading fontFamily="body">Ratings</Heading>
+      <Heading fontFamily="body">Trailers & Clips</Heading>
       <HStack
         spacing={{ base: "8", md: "12" }}
         maxW="100%"
@@ -57,17 +57,20 @@ const Trailer = ({ title }) => {
           <CircularProgress color="brand.100" isIndeterminate />
         ) : clips?.length > 0 ? (
           clips?.map((url) => (
-            <Box minW="480px" minH="270px">
+            <Box
+              minW={{ base: "360px", md: "480px" }}
+              minH={{ base: "202px", md: "270px" }}
+            >
               <ReactPlayer
                 config={{
                   youtube: {
                     playerVars: { origin: "http://localhost:5173" },
                   },
                 }}
-                width={480}
-                height={270}
+                height={window?.innerWidth > 768 ? 270 : 202}
+                width={window?.innerWidth > 768 ? 480 : 360}
                 url={url}
-                controls={true}
+                controls={window?.innerWidth > 768}
               />
             </Box>
           ))
