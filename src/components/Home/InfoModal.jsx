@@ -42,7 +42,12 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
           <ModalBody>
             <VStack alignItems="flex-start">
               <Text>Title: {movie?.title}</Text>
-              <Text>Release Date: {formatDate(movie?.release_date)}</Text>
+              <Text>
+                Release Date:{" "}
+                {movie?.release_date
+                  ? formatDate(movie?.release_date)
+                  : "Upcoming"}
+              </Text>
               <Text>
                 Genres:{" "}
                 {movieGenre?.length > 1 ? movieGenre?.join(", ") : "None"}

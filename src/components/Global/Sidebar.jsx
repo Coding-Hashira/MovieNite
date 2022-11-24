@@ -2,10 +2,7 @@ import React from "react";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
-  IconButton,
-  Tooltip,
   DrawerOverlay,
   DrawerContent,
   DarkMode,
@@ -14,7 +11,6 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react";
 import Logo from "./Logo";
-import Profile from "./Profile";
 import { BiNavigation, BiSearch } from "react-icons/bi";
 import { AiOutlineFire } from "react-icons/ai";
 import { Link } from "react-router-dom";

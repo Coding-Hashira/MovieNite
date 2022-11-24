@@ -14,15 +14,12 @@ const Reviews = ({ id, setIsLoading, rating, ratingCount }) => {
       )
         .then((res) => res.json())
         .then((json) => {
-          console.log(json?.results);
           setReviews(json?.results);
         });
     };
 
     fetchReviews();
     setIsLoading(false);
-
-    console.log(reviews, rating);
   }, []);
 
   return (

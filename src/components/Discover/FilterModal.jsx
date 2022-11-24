@@ -8,9 +8,6 @@ import {
   DarkMode,
   ModalFooter,
   Button,
-  VStack,
-  StackDivider,
-  Heading,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { GenreDiscover } from "../Discover";

@@ -1,8 +1,9 @@
 import Navbar from "./Navbar";
 import Logo from "./Logo";
-import Profile from "./Profile";
 import Sidebar from "./Sidebar";
-import Button from "./Button";
 import Pagination from "./Pagination";
+import Breadcrumb from "./Breadcrumb";
+import Footer from "./Footer";
+import MovieList from "./MovieList";
 
-export { Navbar, Logo, Profile, Sidebar, Button, Pagination };
+export { Navbar, Logo, Sidebar, Pagination, Breadcrumb, Footer, MovieList };

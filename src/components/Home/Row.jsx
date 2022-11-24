@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Poster from "./Poster";
 
-const Row = ({ heading, genreId, allGenres, page, withGenre, url }) => {
-  const apiUrl = withGenre
-    ? `https://api.themoviedb.org/3/discover/movie?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreId}&with_watch_monetization_types=flatrate`
-    : url;
-
+const Row = ({ heading, genreId, allGenres, withGenre, url }) => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const apiUrl = withGenre
+    ? `https://api.themoviedb.org/3/discover/movie?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}&with_watch_monetization_types=flatrate`
+    : url;
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(apiUrl)
       .then((res) => res.json())
       .then((json) => {
@@ -38,7 +38,7 @@ const Row = ({ heading, genreId, allGenres, page, withGenre, url }) => {
         {isLoading ? (
           <CircularProgress isIndeterminate color="brand.500" />
         ) : (
-          movies.map((movie, index) =>
+          movies?.map((movie, index) =>
             window?.innerWidth > 768 ? (
               <Poster
                 hasIcon={window?.innerWidth > 768 ? true : false}
@@ -47,7 +47,7 @@ const Row = ({ heading, genreId, allGenres, page, withGenre, url }) => {
                 key={index}
               />
             ) : (
-              <Link to={`/movie/${movie?.id}`}>
+              <Link to={`/movie/${movie?.id}`} key={index}>
                 <Poster
                   hasIcon={window?.innerWidth > 768 ? true : false}
                   allGenres={allGenres}

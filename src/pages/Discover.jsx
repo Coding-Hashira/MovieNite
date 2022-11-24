@@ -1,6 +1,5 @@
 import {
   VStack,
-  Button,
   useDisclosure,
   IconButton,
   HStack,
@@ -10,7 +9,8 @@ import {
 import React from "react";
 import { AiOutlineFilter } from "react-icons/ai";
 import { Outlet } from "react-router-dom";
-import FilterModal from "../components/Discover/FilterModal";
+import { FilterModal } from "../components/Discover";
+import { Breadcrumb } from "../components/Global";
 
 const Discover = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,6 +24,12 @@ const Discover = () => {
       alignItems="start"
       px="10"
     >
+      <Breadcrumb
+        pages={[
+          { title: "Home", link: "/" },
+          { title: "Discover", link: "/discover" },
+        ]}
+      />
       <HStack justifyContent="space-between" w="full">
         <Heading>Discover</Heading>
         <Tooltip label="Filter" borderRadius="md">

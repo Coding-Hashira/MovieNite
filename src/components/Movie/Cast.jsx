@@ -31,7 +31,7 @@ const Cast = ({ id, setIsLoading }) => {
   return (
     <HStack flexDirection="column" gap="2" alignItems="normal">
       <Heading fontFamily="body">Cast</Heading>
-      <Divider m="0px !important" />
+      <Divider />
       <HStack
         spacing={{ base: "8", md: "12" }}
         maxW="100%"

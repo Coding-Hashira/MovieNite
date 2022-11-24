@@ -1,13 +1,12 @@
 import { Box, CircularProgress, VStack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Cast, MovieInfo, Reviews } from "../components/Movie";
-import Trailer from "../components/Movie/Trailer";
+import { Breadcrumb } from "../components/Global";
+import { Cast, MovieInfo, Reviews, Trailer } from "../components/Movie";
 
 const Movie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
-  const [color, setColor] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -46,11 +45,19 @@ const Movie = () => {
             spacing={{ base: "50px", md: "80px" }}
             pt="100px"
           >
-            <MovieInfo
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-              movie={movie}
-            />
+            <VStack spacing="10" pt="5" alignItems="start">
+              <Breadcrumb
+                pages={[
+                  { title: "Home", link: "/" },
+                  { title: movie?.title, link: document?.location?.pathname },
+                ]}
+              />
+              <MovieInfo
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                movie={movie}
+              />
+            </VStack>
             <Trailer title={movie?.title} />
             <Cast setIsLoading={setIsLoading} id={id} />
             <Reviews

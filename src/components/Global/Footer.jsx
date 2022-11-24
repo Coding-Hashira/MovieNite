@@ -1,11 +1,6 @@
 import { Box, HStack, IconButton, Text } from "@chakra-ui/react";
 import React from "react";
-import {
-  AiFillGithub,
-  AiOutlineGithub,
-  AiOutlineTwitter,
-} from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai";
 
 const Footer = () => {
   return (

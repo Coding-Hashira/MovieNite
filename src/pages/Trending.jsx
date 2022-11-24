@@ -1,8 +1,6 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import MovieList from "../components/Global/MovieList";
+import { Box, VStack } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Breadcrumb, MovieList } from "../components/Global";
 
 const Trending = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,14 +25,22 @@ const Trending = () => {
   }, []);
 
   return (
-    <Box bgColor="blackAlpha.900" py={{ base: "20", md: "24" }}>
+    <VStack spacing="10" bgColor="blackAlpha.900" py={{ base: "20", md: "24" }}>
+      <Box w="100%" alignSelf="start" px="10">
+        <Breadcrumb
+          pages={[
+            { title: "Home", link: "/" },
+            { title: "Trending", link: "/trending" },
+          ]}
+        />
+      </Box>
       <MovieList
         movies={movies}
         hasPagination={false}
         isLoading={isLoading}
         setIsLoading={setIsLoading}
       />
-    </Box>
+    </VStack>
   );
 };
 

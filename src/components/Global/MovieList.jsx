@@ -1,7 +1,5 @@
 import { Box, CircularProgress, VStack } from "@chakra-ui/react";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from "./";
 import { Poster } from "../Home";
@@ -52,60 +50,52 @@ const MovieList = ({
   }, []);
 
   return (
-    <Box paddingTop="" w="100%" bg="transparent" minH="100vh">
-      <VStack spacing="8" w="100%" alignItems="start">
-        {isLoading ? (
+    <Box w="100%" bg="transparent" minH="100vh">
+      {isLoading ? (
+        <Box
+          w="100%"
+          h="60vh"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <CircularProgress isIndeterminate color="brand.100" />
+        </Box>
+      ) : (
+        <VStack spacing="8" w="100%" alignItems="start">
           <Box
-            w="100%"
-            h="60vh"
             display="flex"
+            w="100%"
+            flexWrap="wrap"
+            rowGap="80px"
+            columnGap="50px"
             justifyContent="center"
-            alignItems="center"
           >
-            <CircularProgress isIndeterminate color="brand.100" />
+            {movies?.map((movie, key) =>
+              window?.innerWidth > 768 ? (
+                <Poster
+                  movie={movie}
+                  hasIcon={true}
+                  key={key}
+                  allGenres={allGenres}
+                />
+              ) : (
+                <Link key={key} to={`/movie/${movie?.id}`}>
+                  <Poster movie={movie} hasIcon={true} allGenres={allGenres} />
+                </Link>
+              )
+            )}
           </Box>
-        ) : (
-          <>
-            <Box
-              display="flex"
-              w="100%"
-              flexWrap="wrap"
-              rowGap="80px"
-              columnGap="50px"
-              justifyContent="center"
-            >
-              {movies?.map((movie, key) =>
-                window?.innerWidth > 768 ? (
-                  <Poster
-                    movie={movie}
-                    hasIcon={true}
-                    key={key}
-                    allGenres={allGenres}
-                  />
-                ) : (
-                  <Link key={key} to={`/movie/${movie?.id}`}>
-                    <Poster
-                      movie={movie}
-                      hasIcon={true}
-                      allGenres={allGenres}
-                    />
-                  </Link>
-                )
-              )}
-            </Box>
-          </>
-        )}
-        {hasPagination ? (
-          <Pagination
-            getNextPage={getNextPage}
-            getPrevPage={getPrevPage}
-            page={page}
-            totalPages={totalPages}
-          />
-        ) : (
-          ""
-        )}
-      </VStack>
+          {hasPagination && (
+            <Pagination
+              getNextPage={getNextPage}
+              getPrevPage={getPrevPage}
+              page={page}
+              totalPages={totalPages}
+            />
+          )}
+        </VStack>
+      )}
     </Box>
   );
 };

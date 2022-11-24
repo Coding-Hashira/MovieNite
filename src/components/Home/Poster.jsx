@@ -46,7 +46,7 @@ const Poster = ({ movie, allGenres, hasIcon }) => {
               ?.join("+")}`
       }
     >
-      {hasIcon ? (
+      {hasIcon && (
         <>
           <IconButton
             icon={<AiOutlineInfo />}
@@ -71,8 +71,6 @@ const Poster = ({ movie, allGenres, hasIcon }) => {
             movie={movie}
           />
         </>
-      ) : (
-        ""
       )}
     </HStack>
   );

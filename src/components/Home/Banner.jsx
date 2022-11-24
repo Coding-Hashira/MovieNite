@@ -6,9 +6,10 @@ import {
   VStack,
   Text,
   Button,
+  Link,
 } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const Banner = ({
   movieTitle,
@@ -46,17 +47,15 @@ const Banner = ({
           </VStack>
           <HStack spacing="2" divider={<StackDivider />}>
             {movieGenres.map((genre, key) => (
-              <a
+              <Link
                 href={`/movie?genre=${genre?.id}`}
-                style={{
-                  fontFamily: "Poppins",
-                  fontSize: "0.9em",
-                }}
-                className="Link"
+                fontFamily="body"
+                _hover={{ textColor: "brand.100", textDecor: "underline" }}
+                fontSize="md"
                 key={key}
               >
                 {genre?.name}
-              </a>
+              </Link>
             ))}
           </HStack>
           <Text width={{ base: "100%", md: "md" }} noOfLines="5">
@@ -64,7 +63,7 @@ const Banner = ({
           </Text>
         </VStack>
         <Box paddingY="5">
-          <Link to={`/movie/${movieId}`}>
+          <RouterLink to={`/movie/${movieId}`}>
             <Button
               _hover={{ bgColor: "brand.hover", textColor: "white" }}
               _active={{ bgColor: "brand.hover" }}
@@ -75,7 +74,7 @@ const Banner = ({
             >
               Know More
             </Button>
-          </Link>
+          </RouterLink>
         </Box>
       </Box>
     </Box>

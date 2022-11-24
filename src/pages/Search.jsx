@@ -10,16 +10,14 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import {
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import MovieList from "../components/Global/MovieList";
+import { Breadcrumb, MovieList } from "../components/Global";
 
 const Search = () => {
   const [query] = useSearchParams();
@@ -29,6 +27,21 @@ const Search = () => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
+
+  const Search = () => {
+    search ? setPage(1) : "";
+
+    search != ""
+      ? navigate({
+          pathname: "/search",
+          search: `?${createSearchParams({ query: search })}`,
+        })
+      : "";
+
+    search ? fetchResults() : "";
+
+    searchRef?.current?.focus();
+  };
 
   const fetchResults = () => {
     setIsLoading(true);
@@ -52,7 +65,15 @@ const Search = () => {
 
   return (
     <Box pt="24" bg="blackAlpha.900" minH="100vH">
-      <VStack w="100%">
+      <VStack w="100%" spacing="5">
+        <Box w="100%" alignSelf="start" px="12">
+          <Breadcrumb
+            pages={[
+              { title: "Home", link: "/" },
+              { title: "Search", link: "/search" },
+            ]}
+          />
+        </Box>
         <InputGroup w={{ base: "80%", md: "60%" }} pb="14">
           <InputLeftElement
             display={{ base: "none", md: "flex" }}
@@ -62,6 +83,7 @@ const Search = () => {
           <Input
             ref={searchRef}
             bg="whiteAlpha.50"
+            onKeyDown={(e) => (e.key === "Enter" ? Search() : "")}
             value={search}
             onChange={handleChange}
             _focusVisible={{ borderColor: "gray.500" }}
@@ -80,18 +102,7 @@ const Search = () => {
                 rounded="none"
                 roundedTopRight="md"
                 onClick={() => {
-                  search ? setPage(1) : "";
-
-                  search != ""
-                    ? navigate({
-                        pathname: "/search",
-                        search: `?${createSearchParams({ query: search })}`,
-                      })
-                    : "";
-
-                  search ? fetchResults() : "";
-
-                  searchRef?.current?.focus();
+                  Search();
                 }}
                 roundedBottomRight="md"
                 _focusVisible={{ boxShadow: "none" }}
@@ -158,7 +169,6 @@ const Search = () => {
             Sorry, We Couldn't Find Any Movie :(
           </Text>
         )}
-        {/* )} */}
       </VStack>
     </Box>
   );
