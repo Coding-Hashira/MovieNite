@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const handleBg = () => {
       if (window.scrollY > changeBg) {
-        setBgColor("rgb(20,20,20)");
+        setBgColor("rgb(2, 3, 3)");
       } else setBgColor("transparent");
     };
 
