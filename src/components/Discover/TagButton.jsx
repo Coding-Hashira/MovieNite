@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 
 const TagButton = ({ text, key, genre, setGenre, genreId }) => {
