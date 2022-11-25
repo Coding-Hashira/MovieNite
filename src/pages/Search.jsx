@@ -66,7 +66,7 @@ const Search = () => {
   return (
     <Box pt="24" bg="blackAlpha.900" minH="100vH">
       <VStack w="100%" spacing="5">
-        <Box w="100%" alignSelf="start" px="12">
+        <Box w="100%" alignSelf="start" px={{ base: "8", md: "12" }}>
           <Breadcrumb
             pages={[
               { title: "Home", link: "/" },
@@ -75,11 +75,6 @@ const Search = () => {
           />
         </Box>
         <InputGroup w={{ base: "80%", md: "60%" }} pb="14">
-          <InputLeftElement
-            display={{ base: "none", md: "flex" }}
-            color="gray.600"
-            children={<AiOutlineSearch />}
-          />
           <Input
             ref={searchRef}
             bg="whiteAlpha.50"
@@ -93,27 +88,6 @@ const Search = () => {
           />
           <InputRightElement
             minW="-webkit-fit-content"
-            display={{ base: "none", md: "inline" }}
-            children={
-              <Button
-                _hover={{ bgColor: "brand.hover", textColor: "white" }}
-                _active={{ bgColor: "brand.hover" }}
-                bgColor="brand.900"
-                rounded="none"
-                roundedTopRight="md"
-                onClick={() => {
-                  Search();
-                }}
-                roundedBottomRight="md"
-                _focusVisible={{ boxShadow: "none" }}
-              >
-                Search
-              </Button>
-            }
-          />
-          <InputRightElement
-            minW="-webkit-fit-content"
-            display={{ base: "inline", md: "none" }}
             children={
               <IconButton
                 _hover={{ bgColor: "brand.hover", textColor: "white" }}
