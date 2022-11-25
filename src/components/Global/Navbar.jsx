@@ -18,7 +18,7 @@ const Navbar = () => {
   const btnRef = useRef();
 
   useEffect(() => {
-    let changeBg = window.location.pathname === "/" ? 150 : 20;
+    let changeBg = window.location.pathname === "/" ? 150 : 2;
 
     const handleBg = () => {
       if (window.scrollY > changeBg) {
