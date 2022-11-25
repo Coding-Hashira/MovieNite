@@ -18,11 +18,11 @@ const Navbar = () => {
   const btnRef = useRef();
 
   useEffect(() => {
-    let changeBg = window.location.pathname === "/" ? 150 : 2;
+    let changeBg = window.location.pathname === "/" ? 150 : 0;
 
     const handleBg = () => {
       if (window.scrollY > changeBg) {
-        setBgColor("rgb(2, 3, 3)");
+        setBgColor("rgb(20, 2, 20)");
       } else setBgColor("transparent");
     };
 

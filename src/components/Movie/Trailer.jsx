@@ -3,7 +3,6 @@ import {
   Heading,
   VStack,
   StackDivider,
-  CircularProgress,
   HStack,
   Text,
 } from "@chakra-ui/react";
@@ -14,21 +13,13 @@ import ReactPlayer from "react-player/youtube";
 const Trailer = ({ title }) => {
   const [localTitle, setLocalTitle] = useState("");
   const [clips, setClips] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-
     setLocalTitle(title ? title : "");
-
-    console.log(title);
-
-    setIsLoading(false);
   }, [title]);
 
   useEffect(() => {
-    console.log(isLoading);
-    if (!isLoading) {
+    if (localTitle) {
       movieTrailer(localTitle, { multi: true }).then((res) => {
         setClips(res?.length > 5 ? res?.slice(0, 5) : res);
         console.log(clips, res);
@@ -53,9 +44,7 @@ const Trailer = ({ title }) => {
         pl="3px"
         m="0px"
       >
-        {isLoading ? (
-          <CircularProgress color="brand.100" isIndeterminate />
-        ) : clips?.length > 0 ? (
+        {clips?.length > 0 ? (
           clips?.map((url) => (
             <Box
               minW={{ base: "360px", md: "480px" }}

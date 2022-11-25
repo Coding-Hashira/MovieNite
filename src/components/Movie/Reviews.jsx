@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 import Rating from "./Rating";
 import Review from "./Review";
 
-const Reviews = ({ id, setIsLoading, rating, ratingCount }) => {
+const Reviews = ({ id, rating, ratingCount }) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchReviews = async () => {
       await fetch(
         `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&page=1`
@@ -19,7 +18,6 @@ const Reviews = ({ id, setIsLoading, rating, ratingCount }) => {
     };
 
     fetchReviews();
-    setIsLoading(false);
   }, []);
 
   return (

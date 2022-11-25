@@ -5,8 +5,10 @@ import {
   HStack,
   Heading,
   Tooltip,
+  CircularProgress,
 } from "@chakra-ui/react";
 import React from "react";
+import { Suspense } from "react";
 import { AiOutlineFilter } from "react-icons/ai";
 import { Outlet } from "react-router-dom";
 import { FilterModal } from "../components/Discover";
@@ -47,7 +49,11 @@ const Discover = () => {
         </HStack>
       </VStack>
       <FilterModal isOpen={isOpen} onClose={onClose} />
-      <Outlet />
+      <Suspense
+        fallback={<CircularProgress isIndeterminate color="brand.100" />}
+      >
+        <Outlet />
+      </Suspense>
     </VStack>
   );
 };

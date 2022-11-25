@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-const MovieInfo = ({ movie, setIsLoading }) => {
+const MovieInfo = ({ movie }) => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const MovieInfo = ({ movie, setIsLoading }) => {
       });
 
       setGenres(genreList.slice(0, 2));
-      setIsLoading(false);
     };
 
     setMovieGenres();

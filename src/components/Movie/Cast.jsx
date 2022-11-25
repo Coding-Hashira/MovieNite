@@ -9,11 +9,10 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-const Cast = ({ id, setIsLoading }) => {
+const Cast = ({ id }) => {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchCast = async () => {
       await fetch(
         `https://api.themoviedb.org/3/movie/${id}/credits?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US`
@@ -25,7 +24,6 @@ const Cast = ({ id, setIsLoading }) => {
     };
 
     fetchCast();
-    setIsLoading(false);
   }, []);
 
   return (

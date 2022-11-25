@@ -1,23 +1,23 @@
 import {
   Box,
-  Button,
   CircularProgress,
   IconButton,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Suspense, lazy } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import {
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { Breadcrumb, MovieList } from "../components/Global";
+import { Breadcrumb } from "../components/Global";
+
+const MovieList = lazy(() => import("../components/Global/MovieList"));
 
 const Search = () => {
   const [query] = useSearchParams();
@@ -25,7 +25,6 @@ const Search = () => {
   const searchRef = useRef(null);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
 
   const Search = () => {
@@ -44,7 +43,6 @@ const Search = () => {
   };
 
   const fetchResults = () => {
-    setIsLoading(true);
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=8be9eb85a8d025c42456c206a5d94317&language=en-US&query=${search}&page=${page}&include_adult=false`
     )
@@ -52,11 +50,8 @@ const Search = () => {
       .then((json) => {
         setResults(json);
         setPage(json?.page);
-        console.log(json);
       })
       .catch((err) => console.log(err));
-
-    setIsLoading(false);
   };
 
   const handleChange = (e) => {
@@ -118,18 +113,18 @@ const Search = () => {
         </InputGroup>
         {!query?.get("query") ? (
           ""
-        ) : isLoading ? (
-          <CircularProgress color="brand.100" isIndeterminate />
         ) : results?.results?.length > 1 ? (
-          <MovieList
-            isLoading={isLoading}
-            page={page}
-            totalPages={results?.total_pages}
-            movies={results?.results}
-            setPage={setPage}
-            setIsLoading={setIsLoading}
-            onPageChange={fetchResults}
-          />
+          <Suspense
+            fallback={<CircularProgress isIndeterminate color="brand.100" />}
+          >
+            <MovieList
+              page={page}
+              totalPages={results?.total_pages}
+              movies={results?.results}
+              setPage={setPage}
+              onPageChange={fetchResults}
+            />
+          </Suspense>
         ) : (
           <Text
             display="flex"

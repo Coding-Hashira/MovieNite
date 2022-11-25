@@ -4,6 +4,5 @@ import Sidebar from "./Sidebar";
 import Pagination from "./Pagination";
 import Breadcrumb from "./Breadcrumb";
 import Footer from "./Footer";
-import MovieList from "./MovieList";
 
-export { Navbar, Logo, Sidebar, Pagination, Breadcrumb, Footer, MovieList };
+export { Navbar, Logo, Sidebar, Pagination, Breadcrumb, Footer };

@@ -24,12 +24,7 @@ const GenreDiscover = ({ genre, setGenre }) => {
   }, []);
 
   return (
-    <Box
-      w="100%"
-      display="flex"
-      flexWrap="wrap"
-      justifyContent={{ base: "center", md: "space-between" }}
-    >
+    <Box w="100%" display="flex" flexWrap="wrap" justifyContent="center">
       {isLoading ? (
         <CircularProgress color="brand.100" isIndeterminate />
       ) : (

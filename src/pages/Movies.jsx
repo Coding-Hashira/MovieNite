@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@chakra-ui/react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
-import MovieList from "../components/Global/MovieList";
+
+const MovieList = lazy(() => import("../components/Global/MovieList"));
 
 const Movies = () => {
   const [searchParams] = useSearchParams();
@@ -34,14 +36,16 @@ const Movies = () => {
   }, [page, searchParams]);
 
   return (
-    <MovieList
-      totalPages={totalPages}
-      movies={movies}
-      page={page}
-      isLoading={isLoading}
-      setIsLoading={setIsLoading}
-      setPage={setPage}
-    />
+    <Suspense fallback={<CircularProgress color="brand.100" isIndeterminate />}>
+      <MovieList
+        totalPages={totalPages}
+        movies={movies}
+        page={page}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        setPage={setPage}
+      />
+    </Suspense>
   );
 };
 

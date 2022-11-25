@@ -1,13 +1,13 @@
-import { Box, VStack } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import { Breadcrumb, MovieList } from "../components/Global";
+import { Box, CircularProgress, VStack } from "@chakra-ui/react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { Breadcrumb } from "../components/Global";
+
+const MovieList = lazy(() => import("../components/Global/MovieList"));
 
 const Trending = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchMovies = async () => {
       await fetch(
         "https://api.themoviedb.org/3/trending/movie/day?api_key=8be9eb85a8d025c42456c206a5d94317"
@@ -18,14 +18,18 @@ const Trending = () => {
           console.log(json);
         })
         .catch((err) => console.log(err));
-      setIsLoading(false);
     };
 
     fetchMovies();
   }, []);
 
   return (
-    <VStack spacing="10" bgColor="blackAlpha.900" py={{ base: "20", md: "24" }}>
+    <VStack
+      spacing="10"
+      minH="100vh"
+      bgColor="blackAlpha.900"
+      py={{ base: "20", md: "24" }}
+    >
       <Box w="100%" alignSelf="start" px="10">
         <Breadcrumb
           pages={[
@@ -34,12 +38,11 @@ const Trending = () => {
           ]}
         />
       </Box>
-      <MovieList
-        movies={movies}
-        hasPagination={false}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-      />
+      <Suspense
+        fallback={<CircularProgress isIndeterminate color="brand.100" />}
+      >
+        <MovieList movies={movies} hasPagination={false} />
+      </Suspense>
     </VStack>
   );
 };
