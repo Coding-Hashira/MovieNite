@@ -46,7 +46,14 @@ const Home = () => {
     <Box minH="100vh" bgColor="blackAlpha.900">
       <Suspense
         fallback={
-          <Box h="full" w="95vw" pt="200px" display="flex" alignItems="center">
+          <Box
+            h="full"
+            w="100%"
+            justifyContent="center"
+            pt="200px"
+            display="flex"
+            alignItems="center"
+          >
             <CircularProgress isIndeterminate color="brand.100" />
           </Box>
         }

@@ -113,7 +113,7 @@ const Search = () => {
         </InputGroup>
         {!query?.get("query") ? (
           ""
-        ) : results?.results?.length > 1 ? (
+        ) : (
           <Suspense
             fallback={<CircularProgress isIndeterminate color="brand.100" />}
           >
@@ -125,18 +125,6 @@ const Search = () => {
               onPageChange={fetchResults}
             />
           </Suspense>
-        ) : (
-          <Text
-            display="flex"
-            textColor="gray.400"
-            fontSize={{ base: "lg", md: "xl" }}
-            fontStyle="italic"
-            w={{ base: "80%", md: "100%" }}
-            justifyContent="center"
-            textAlign="center"
-          >
-            Sorry, We Couldn't Find Any Movie :(
-          </Text>
         )}
       </VStack>
     </Box>

@@ -19,7 +19,12 @@ const FilterModal = ({ isOpen, onClose }) => {
 
   return (
     <DarkMode>
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+      <Modal
+        blockScrollOnMount={false}
+        isCentered
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay />
         <ModalContent minW="60vw" fontFamily="body" textColor="white">
           <ModalHeader>Filter by Genres</ModalHeader>

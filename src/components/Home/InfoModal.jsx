@@ -34,7 +34,7 @@ const InfoModal = ({ isOpen, onClose, movie, allGenres }) => {
 
   return (
     <DarkMode>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent fontFamily="body" textColor="white">
           <ModalHeader>Movie Summary</ModalHeader>
