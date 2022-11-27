@@ -47,15 +47,13 @@ const Banner = ({
           </VStack>
           <HStack spacing="2" divider={<StackDivider />}>
             {movieGenres.map((genre, key) => (
-              <Link
-                href={`/discover?genre=${genre?.id}`}
+              <Text
                 fontFamily="body"
-                _hover={{ textColor: "brand.100", textDecor: "underline" }}
                 fontSize="md"
                 key={key}
               >
                 {genre?.name}
-              </Link>
+              </Text>
             ))}
           </HStack>
           <Text width={{ base: "100%", md: "md" }} noOfLines="5">
