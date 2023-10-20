@@ -1,3 +1,7 @@
+body {
+  scroll-behavior: smooth;
+}
+
 .Link:hover {
   text-decoration: underline;
 }

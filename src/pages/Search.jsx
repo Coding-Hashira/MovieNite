@@ -59,7 +59,7 @@ const Search = () => {
   };
 
   return (
-    <Box pt="24" bg="blackAlpha.900" minH="100vH">
+    <Box pt="24" pb="10" bg="blackAlpha.900" minH="100vH">
       <VStack w="100%" spacing="5">
         <Box w="100%" alignSelf="start" px={{ base: "8", md: "12" }}>
           <Breadcrumb

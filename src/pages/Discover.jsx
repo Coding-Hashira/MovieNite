@@ -25,6 +25,7 @@ const Discover = () => {
       pt={{ base: "20", md: "24" }}
       alignItems="start"
       px="10"
+      pb="10"
     >
       <VStack spacing="5" alignItems="start" w="full">
         <Breadcrumb
